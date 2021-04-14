@@ -1,3 +1,5 @@
+
+
 /*
  *
  * @author Aiman Kayad PID: 5975108
@@ -85,7 +87,8 @@ public class GraphDisplay extends JPanel
           */
           
           
-    /* Create a nested for loop to see if there is an edge between vertices,
+    /* 
+     *  Create a nested for loop to see if there is an edge between vertices,
      *  If there is, set color and create an edge.
      */
     for (int i = 0; i < newRead.numberOfVertices; i++)
@@ -103,7 +106,7 @@ public class GraphDisplay extends JPanel
             int xj = newRead.pointsX.get(j);
             int yj = newRead.pointsY.get(j);
             
-            g.setColor(Color.BLACK);
+            g.setColor(Color.GRAY);
             g.drawLine(xi,yi,xj,yj); // (3,3 , 4,4)
             g.drawString(String.valueOf(Math.round(Math.hypot(yj-yi, xj-xi))), (Math.round(xi + xj) / 2) , (Math.round(yi + yj) / 2) );
                             //(Math.round(xi + yj) / 2) , (Math.round(yi + yj) / 2)
@@ -119,31 +122,42 @@ public class GraphDisplay extends JPanel
     /*
      * This was our attempt to highlight the edges on the graph according to the
      * shortest path algorithm results from s to t.
-    /*
-    for (int i = 0; i < newRead.resultArray.length; i++) 
+    */
+    
+    
+    for (int i = 0; i < newRead.localArray.length; i++) 
     {
-        if (i == newRead.resultArray.length-1) 
+        if (i == newRead.localArray.length-1) 
         {
             break;
         }
         
-        int pos1 = newRead.resultArray[i];
+
+       int pos1 = newRead.localArray[i];
+       
+       
+       int pos2 = newRead.localArray[++i];
+      
         
-        int x1 = pointsX.get(pos1);
-        int y1 = pointsY.get(pos1);
+        int x1 = newRead.pointsX.get(pos1);
+        int y1 = newRead.pointsY.get(pos1);
+         
         
-        int pos2 = newRead.resultArray[i++];
         
-        int x2 = pointsX.get(pos2);
-        int y2 = pointsY.get(pos2);
+        int x2 = newRead.pointsX.get(pos2);
+        int y2 = newRead.pointsY.get(pos2);
+        
+        System.out.println("x1: " + x1 +  ", y1: " + y1 + ", x2: " + x2 +  ", y2: " + y2);
         
         
         g.setColor(Color.RED);
         g.drawLine(x1,y1,x2,y2);
         
-        
-    }
-    */
+    } 
+    
+    
+
+    
     
     
        
@@ -153,7 +167,7 @@ public class GraphDisplay extends JPanel
              String str = Integer.toHexString(i);
             //Define where a specific vertex will fall on a x, y coordinate
             //inside the container.
-           //double t = 2 * Math.PI * i / n;
+          
           
            int x = newRead.pointsX.get(i);
            int y = newRead.pointsY.get(i);
