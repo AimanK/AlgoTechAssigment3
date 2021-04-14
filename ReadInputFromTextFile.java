@@ -43,7 +43,7 @@ public class ReadInputFromTextFile
     // static int p[];
     
     static ArrayList<Integer> pointsX = new ArrayList<Integer>();
-    ArrayList<Integer> pointsY = new ArrayList<Integer>();
+    static ArrayList<Integer> pointsY = new ArrayList<Integer>();
     
     public static void main(String[] args)
     {
@@ -57,18 +57,29 @@ public class ReadInputFromTextFile
        Graph graphy = new Graph(numberOfVertices);
         
         
-        
          
-        
-       // System.out.println(graphy.verticesNumber);
-        
-        /*
-        for (int i = 0; i < numberOfVertices; i++) {
-            for (int j = 0; j < 2; j++) {
-                 graphy.addEdge(i, j, matrix[i][j]);
-            }
-        }
+          int[] localArray = new int [numberOfVertices];
+         
+     
+      
+        /**
+         * Reads the values from matrix into the graphy Graph class object
+         * Also, adds the x and y coordinates into their Arraylists
         */
+        for (int i = 0; i < numberOfVertices; i++) 
+        {
+            for (int j = 0; j < 2; j++) 
+            {
+                 
+                graphy.matrix[i][j] = matrix[i][j];
+                
+                 
+            }
+                 pointsX.add(graphy.matrix[i][0]);
+                 pointsY.add(graphy.matrix[i][1]);
+        }
+        
+        
         
         
         
@@ -77,6 +88,13 @@ public class ReadInputFromTextFile
       System.out.println("Graph class read: \n" + graphy.toString());
         
      
+      System.out.println(graphy.TSP_localSearch(localArray));
+      
+      for (int v: localArray)
+      {
+          System.out.print(v + " ");
+      }
+      
        
     }
     
@@ -91,7 +109,7 @@ public class ReadInputFromTextFile
      */
     public void readGraph()
     {
-        File input = new File("/Users/aimankayad/Desktop/TSPgraph.txt");
+        File input = new File("/Users/aimankayad/Desktop/TSPgraph2.txt");
 
         Scanner in = null;
         try
@@ -138,6 +156,7 @@ public class ReadInputFromTextFile
        
         
     }
+    
     
         
     
