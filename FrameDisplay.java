@@ -16,8 +16,8 @@
 
 public class FrameDisplay extends JFrame
 {
-    int WIDTH = (450);
-    int HEIGHT = (450);
+    int WIDTH = (900);
+    int HEIGHT = (900);
     
      ReadInputFromTextFile newRead = new ReadInputFromTextFile();
     
