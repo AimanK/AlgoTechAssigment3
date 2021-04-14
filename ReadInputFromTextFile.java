@@ -40,6 +40,8 @@ public class ReadInputFromTextFile
     
     static int[] pathValues;
     
+   static  int[] localArray;
+    
     // static int p[];
     
     static ArrayList<Integer> pointsX = new ArrayList<Integer>();
@@ -57,8 +59,8 @@ public class ReadInputFromTextFile
        Graph graphy = new Graph(numberOfVertices);
         
         
-         
-          int[] localArray = new int [numberOfVertices];
+        localArray = new int [numberOfVertices];
+          
          
      
       
@@ -88,7 +90,7 @@ public class ReadInputFromTextFile
       System.out.println("Graph class read: \n" + graphy.toString());
         
      
-      System.out.println(graphy.TSP_localSearch(localArray));
+       graphy.TSP_localSearch(localArray);
       
       for (int v: localArray)
       {
