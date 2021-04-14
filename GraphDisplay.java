@@ -27,8 +27,8 @@ public class GraphDisplay extends JPanel
     private int r = 4 * SIZE / 5;
     private int n;
     
-    ArrayList<Integer> pointsX = new ArrayList<Integer>();
-    ArrayList<Integer> pointsY = new ArrayList<Integer>();
+    //ArrayList<Integer> pointsX = new ArrayList<Integer>();
+   // ArrayList<Integer> pointsY = new ArrayList<Integer>();
     
    
     
@@ -64,50 +64,56 @@ public class GraphDisplay extends JPanel
        r = 4 * m / 5;
        int r2 = Math.abs(m - r) / 2;
        
-           /*
+        /*   
        // Looping through the vertices in order to find the points of each vertex and add to list
           for (int i = 0; i < graphy.matrix.length; i++)
        {
-           int x = (int) newRead.matrix[i];
-           
            for (int j = 0; j < graphy.matrix.length; j++)
            {
            // Define where a specific vertex will fall on a specific coordinate
            // within the frame.
            
-           int x = (int) newRead.matrix[i][j];
-           int y = (int) newRead.matrix[i][j];
+           int x = (int) newRead.pointsX.get(i);
+           int y = (int) newRead.pointsY.get(j);
 
              // Store the coordinates of the points:
-             pointsX.add(x);
-             pointsY.add(y);
+            // pointsX.add(x);
+             //pointsY.add(y);
              
        }
        }
           */
+          
           
     /* Create a nested for loop to see if there is an edge between vertices,
      *  If there is, set color and create an edge.
      */
     for (int i = 0; i < newRead.numberOfVertices; i++)
     {
-        for (int j = 0; j < 2; j++)
-        {
+        for (int j = 0; j < newRead.numberOfVertices; j++)
+        {   /*
             if (graphy.matrix[i][j] > 0) 
+            */
+            
         {
-           // Fetching the coordinates of the vertices from the ArrayList
-            int xi = pointsX.get(i);
-            int yi = pointsY.get(i);
-            int xj = pointsX.get(j);
-            int yj = pointsY.get(j);
+            // Fetching the coordinates of the vertices from the ArrayList
+            int xi = newRead.pointsX.get(i);
+            int yi = newRead.pointsY.get(i);
+            
+            int xj = newRead.pointsX.get(j);
+            int yj = newRead.pointsY.get(j);
+            
             g.setColor(Color.BLACK);
             g.drawLine(xi,yi,xj,yj); // (3,3 , 4,4)
-            g.drawString(String.valueOf(graphy.matrix[i][j]), (Math.round(xi + xj) / 2) , (Math.round(yi + yj) / 2) );
+            g.drawString(String.valueOf(Math.round(Math.hypot(yj-yi, xj-xi))), (Math.round(xi + xj) / 2) , (Math.round(yi + yj) / 2) );
+                            //(Math.round(xi + yj) / 2) , (Math.round(yi + yj) / 2)
+                            //(Math.round(xi + yj) / 2) , (Math.round(xj + yi) / 2)
            
            
         }
           
         }
+        
     }
     
     /*
@@ -147,17 +153,18 @@ public class GraphDisplay extends JPanel
              String str = Integer.toHexString(i);
             //Define where a specific vertex will fall on a x, y coordinate
             //inside the container.
-           double t = 2 * Math.PI * i / n;
-           int x = (int) Math.round(a + r * Math.cos(t));
-           int y = (int) Math.round(b + r * Math.sin(t));
+           //double t = 2 * Math.PI * i / n;
+          
+           int x = newRead.pointsX.get(i);
+           int y = newRead.pointsY.get(i);
 
 
             //Setting the properties of each vertex color, border, and number
              g.setColor(Color.GREEN);
-             g.fillOval(x - r2, y - r2, 2 * r2, 2 * r2);
+             g.fillOval(x, y, r2, r2);
              g.setColor(Color.BLACK);
-             g.drawOval(x - r2, y - r2, 2 * r2, 2 * r2);
-             g.drawString(String.valueOf(i), x - 8 , y + 5);
+             g.drawOval(x, y, r2, r2  );
+             g.drawString(String.valueOf(i), x + 10, y + 20);
        }
        
        
